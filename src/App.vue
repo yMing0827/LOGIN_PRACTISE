@@ -4,11 +4,11 @@
     <form @submit.prevent="login">
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" required>
+        <input type="text" id="username" v-model="formInline.username" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required>
+        <input type="password" id="password" v-model="formInline.password" required>
       </div>
       <button type="submit">登 录</button>
     </form>
@@ -21,10 +21,10 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import { http } from './utils/http'
-import Modal from './components/Modal.vue';
+<script setup >
+import { ref } from 'vue';
+import { http } from './utils/http';
+import Modal from '@/components/Modal.vue';
 
 const showModal = ref(false);
 const modalTitle = ref('标题');
@@ -42,33 +42,19 @@ const handleCancel = () => {
   showModal.value = false;
 };
 
-interface FormState {
-  username: string;
-  password: string;
-}
 
-const formInline = reactive({
+const formInline = ref({
   username: 'admin',
   password: '123456',
 });
-
-const { username, password } = formInline;
-
-const params: FormState = {
-  username,
-  password,
-};
 
 const login = () => {
   http.request({
     url: '/login',
     method: 'POST',
-    params,
-  }).then((res) => { console.log(res) })
-
+    params: formInline.value,
+  }).then((res) => { console.log(res) });
 };
-
-
 </script>
 
 <style>
