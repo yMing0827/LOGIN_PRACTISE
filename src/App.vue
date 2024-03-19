@@ -78,6 +78,7 @@ const login = () => {
 </script>
 
 <style>
+
 .login {
   max-width: 300px;
   margin: 0 auto;
