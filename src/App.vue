@@ -23,7 +23,8 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import { http } from './utils/http'
+// import { http } from './utils/http'
+import { loginApiCtl } from './api/login';
 import Modal from './components/Modal.vue';
 
 const showModal = ref(false);
@@ -60,11 +61,16 @@ const params: FormState = {
 };
 
 const login = () => {
-  http.request({
-    url: '/login',
-    method: 'POST',
-    params,
-  }).then((res) => { console.log(res) })
+  // http.request({
+  //   url: '/login',
+  //   method: 'POST',
+  //   params,
+  // }).then((res) => { console.log(res) })
+
+  
+  loginApiCtl(params).then(res=>{
+    console.log("res====>",res)
+  })
 
 };
 
