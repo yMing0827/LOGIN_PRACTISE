@@ -1,4 +1,4 @@
-# 服务管理平台
+# VUE PRACTISE
  本程序目前为VUE项目学习使用
 ## 架构说明
 - [VITE项目配置|跨域请求配置](vite.config.ts)
